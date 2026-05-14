@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --apprecio-pink: #ff3366; --dark-text: #2d2d2d; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; max-width: 550px; width: 100%; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #ddd; }
+        .logo-container { text-align:center; margin-bottom: 30px; }
+        .logo-text { color: var(--apprecio-pink); font-weight: 800; font-size: 32px; letter-spacing: -1.5px; }
+        
+        .question-label { display: block; font-weight: 600; margin-bottom: 15px; font-size: 15px; color: var(--dark-text); line-height: 1.4; }
+        
+        /* Escala del 1 al 10 */
+        .scale-10 { display: flex; justify-content: space-between; gap: 5px; }
+        .scale-item { flex: 1; text-align: center; }
+        .scale-item input { display: none; }
+        .scale-item label { 
+            display: block; 
+            border: 1px solid #eee; 
+            padding: 12px 0; 
+            cursor: pointer; 
+            border-radius: 8px; 
+            background: #fff; 
+            font-weight: 600; 
+            transition: 0.2s; 
+            font-size: 14px;
+        }
+        .scale-item label:hover { border-color: var(--apprecio-pink); color: var(--apprecio-pink); }
+        .scale-item input:checked + label { background: var(--apprecio-pink); color: white; border-color: var(--apprecio-pink); box-shadow: 0 4px 0 #b01e42; }
+
+        .legend { display: flex; justify-content: space-between; color: #999; font-size: 11px; margin-top: 8px; margin-bottom: 40px; }
+        
+        .seccion-titulo { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--apprecio-pink); margin-bottom: 15px; }
+        
+        textarea { 
+            width: 100%; 
+            border: 1px solid #ddd; 
+            border-radius: 12px; 
+            padding: 15px; 
+            font-family: 'Poppins', sans-serif; 
+            min-height: 110px; 
+            box-sizing: border-box; 
+            resize: none; 
+            font-size: 14px;
+        }
+        textarea:focus { outline: none; border-color: var(--apprecio-pink); }
+
+        .btn-submit { 
+            width: 100%; 
+            background: var(--apprecio-pink); 
+            color: white; 
+            border: none; 
+            padding: 20px; 
+            border-radius: 15px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            box-shadow: 0 6px 0 #b01e42; 
+            font-size: 16px; 
+            margin-top: 35px; 
+            transition: 0.1s;
+            text-transform: uppercase;
+        }
+        .btn-submit:active { transform: translateY(4px); box-shadow: 0 2px 0 #b01e42; }
+        
+        #success-msg { display: none; text-align: center; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card" id="main-card">
+        <div class="logo-container"><div class="logo-text">apprecio</div></div>
+        
+        <form id="surveyForm" action="https://script.google.com/macros/s/AKfycbxlIqAXer58v2dUjkiuKhPXtz546XTcltDPULpjsgrllnOQDtHvbOUYjQE2A2PFa1SN/exec" method="POST">
+            
+            <label class="question-label">¿Qué tan satisfecho estás con la gestión de tu ejecutivo comercial?</label>
+            <div class="scale-10">
+                <div class="scale-item"><input type="radio" name="csat" value="1" id="c1" required><label for="c1">1</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="2" id="c2"><label for="c2">2</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="3" id="c3"><label for="c3">3</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="4" id="c4"><label for="c4">4</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="5" id="c5"><label for="c5">5</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="6" id="c6"><label for="c6">6</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="7" id="c7"><label for="c7">7</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="8" id="c8"><label for="c8">8</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="9" id="c9"><label for="c9">9</label></div>
+                <div class="scale-item"><input type="radio" name="csat" value="10" id="c10"><label for="c10">10</label></div>
+            </div>
+            <div class="legend"><span>Nada satisfecho</span><span>Muy satisfecho</span></div>
+
+            <div class="seccion-titulo">Tu opinión</div>
+            <label class="question-label">¿Qué fue lo más valioso de la reunión y que podríamos mejorar?</label>
+            <textarea name="abierta" placeholder="Escribe aquí tus comentarios..." required></textarea>
+
+            <button type="submit" class="btn-submit" id="submitBtn">ENVIAR ENCUESTA</button>
+        </form>
+
+        <div id="success-msg">
+            <h2 style="color: var(--apprecio-pink);">¡Muchas gracias!</h2>
+            <p>Tu respuesta ha sido registrada correctamente.</p>
+        </div>
+    </div>
+
+    <script>
+        // Este pequeño script evita que la página se recargue feo al enviar
+        const form = document.getElementById('surveyForm');
+        form.onsubmit = function() {
+            document.getElementById('submitBtn').innerText = "ENVIANDO...";
+            document.getElementById('submitBtn').style.opacity = "0.7";
+        };
+    </script>
+</body>
+</html>
