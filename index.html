@@ -63,4 +63,64 @@
                     <div class="scale-item"><input type="radio" name="csat" value="2" id="c2"><label for="c2">2</label></div>
                     <div class="scale-item"><input type="radio" name="csat" value="3" id="c3"><label for="c3">3</label></div>
                     <div class="scale-item"><input type="radio" name="csat" value="4" id="c4"><label for="c4">4</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="5" id="c5"><label for="
+                    <div class="scale-item"><input type="radio" name="csat" value="5" id="c5"><label for="c5">5</label></div>
+                    <div class="scale-item"><input type="radio" name="csat" value="6" id="c6"><label for="c6">6</label></div>
+                    <div class="scale-item"><input type="radio" name="csat" value="7" id="c7"><label for="c7">7</label></div>
+                    <div class="scale-item"><input type="radio" name="csat" value="8" id="c8"><label for="c8">8</label></div>
+                    <div class="scale-item"><input type="radio" name="csat" value="9" id="c9"><label for="c9">9</label></div>
+                    <div class="scale-item"><input type="radio" name="csat" value="10" id="c10"><label for="c10">10</label></div>
+                </div>
+                <div class="legend"><span>Nada satisfecho</span><span>Muy satisfecho</span></div>
+
+                <div class="seccion-titulo">Tu opinión</div>
+                <label class="question-label">¿Qué fue lo más valioso de la reunión y qué podríamos mejorar?<span class="required-star">*</span></label>
+                <textarea name="abierta" class="input-field" placeholder="Escribe aquí tus comentarios..." required></textarea>
+
+                <label class="question-label">Correo electrónico corporativo:<span class="required-star">*</span></label>
+                <input type="email" name="email" class="input-field" placeholder="ejemplo@empresa.com" required>
+
+                <button type="submit" class="btn-submit" id="submitBtn">ENVIAR ENCUESTA</button>
+            </form>
+        </div>
+
+        <div id="success-msg">
+            <div class="logo-container">
+                <img src="https://lh3.googleusercontent.com/d/12upXsdMnB3_YmXU1Dm49lfJnUlpJFbHi" alt="Apprecio Logo" class="logo-img">
+            </div>
+            <span class="success-icon">✅</span>
+            <h2 style="font-weight: 800; color: var(--dark-text); margin-top: 0;">¡Muchas gracias!</h2>
+            <p style="color: #666; line-height: 1.6;">Tu feedback ha sido enviado con éxito. Valoramos mucho tu tiempo para ayudarnos a mejorar nuestra gestión comercial.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT ---
+        const WEB_APP_URL = "TU_URL_DE_APPS_SCRIPT_AQUI"; 
+
+        document.getElementById('surveyForm').onsubmit = function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            
+            btn.disabled = true;
+            btn.innerText = 'ENVIANDO...';
+
+            const formData = new FormData(this);
+            const params = new URLSearchParams(formData);
+
+            // Envío de datos a Google Sheets
+            fetch(WEB_APP_URL + "?" + params.toString(), {
+                method: 'GET',
+                mode: 'no-cors'
+            }).then(() => {
+                document.getElementById('form-content').style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+                window.scrollTo(0,0);
+            }).catch(err => {
+                alert("Hubo un error al enviar la encuesta. Por favor, intenta de nuevo.");
+                btn.disabled = false;
+                btn.innerText = 'ENVIAR ENCUESTA';
+            });
+        };
+    </script>
+</body>
+</html>
