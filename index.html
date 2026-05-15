@@ -10,30 +10,32 @@
         body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; padding: 20px; align-items: center; min-height: 100vh; margin: 0; }
         .card { background: white; max-width: 550px; width: 100%; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #ddd; box-sizing: border-box; }
         
-        /* LOGO: Aquí es donde controlas el tamaño */
+        /* LOGO PEQUEÑO */
         .logo-container { text-align:center; margin-bottom: 25px; }
-        .logo-img { 
-            width: 70px !important; /* Forzamos el ancho a 70px */
-            height: auto; 
-            display: inline-block;
-        }
+        .logo-img { width: 75px !important; height: auto !important; }
 
         .introduccion { text-align: center; color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .question-label { display: block; font-weight: 600; margin-bottom: 12px; font-size: 14px; color: var(--dark-text); }
         .required-star { color: var(--apprecio-pink); margin-left: 3px; }
+        
         .input-field { width: 100%; border: 1px solid #ddd; border-radius: 10px; padding: 12px; box-sizing: border-box; margin-bottom: 25px; font-family: inherit; font-size: 14px; transition: 0.3s; }
         .input-field:focus { border-color: var(--apprecio-pink); outline: none; border-width: 2px; }
+
         .scale-10 { display: flex; justify-content: space-between; gap: 4px; margin-bottom: 5px; }
         .scale-item { flex: 1; text-align: center; }
         .scale-item input { display: none; }
         .scale-item label { display: block; border: 1px solid #eee; padding: 10px 0; cursor: pointer; border-radius: 8px; background: #fff; font-weight: 600; transition: 0.2s; font-size: 13px; }
         .scale-item input:checked + label { background: var(--apprecio-pink); color: white; border-color: var(--apprecio-pink); transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 51, 102, 0.3); }
+        
         .legend { display: flex; justify-content: space-between; color: #999; font-size: 11px; margin-bottom: 35px; }
         .seccion-titulo { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--apprecio-pink); margin-bottom: 10px; letter-spacing: 1px; }
+        
         textarea { min-height: 110px; resize: none; }
+
         .btn-submit { width: 100%; background: var(--apprecio-pink); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 800; cursor: pointer; box-shadow: 0 5px 0 #d11f4a; font-size: 16px; margin-top: 10px; transition: 0.1s; text-transform: uppercase; }
         .btn-submit:active { transform: translateY(4px); box-shadow: 0 0px 0 #d11f4a; }
         .btn-submit:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+        
         #success-msg { display: none; text-align: center; padding: 20px 0; }
         .success-icon { font-size: 60px; margin-bottom: 15px; display: block; }
     </style>
@@ -41,11 +43,9 @@
 <body>
     <div class="card">
         <div id="form-content">
-    <div class="logo-container">
-        <img src="https://drive.google.com/uc?id=1BgDDHoP3ve2r1k3-Z27LMA_YamEQkFee" 
-             alt="Apprecio Logo" 
-             style="width: 70px !important; height: auto !important; max-width: 70px !important;">
-    </div>
+            <div class="logo-container">
+                <img src="https://drive.google.com/uc?id=1BgDDHoP3ve2r1k3-Z27LMA_YamEQkFee" alt="Apprecio Logo" class="logo-img">
+            </div>
 
             <div class="introduccion">
                 Tu opinión es clave para nosotros. Por favor, tómate un minuto para calificar la gestión de nuestro ejecutivo en tu última reunión comercial.
@@ -62,4 +62,64 @@
                     <div class="scale-item"><input type="radio" name="csat" value="6" id="c6"><label for="c6">6</label></div>
                     <div class="scale-item"><input type="radio" name="csat" value="7" id="c7"><label for="c7">7</label></div>
                     <div class="scale-item"><input type="radio" name="csat" value="8" id="c8"><label for="c8">8</label></div>
-                    <div class
+                    <div class="scale-item"><input type="radio" name="csat" value="9" id="c9"><label for="c9">9</label></div>
+                    <div class="scale-item"><input type="radio" name="csat" value="10" id="c10"><label for="c10">10</label></div>
+                </div>
+                <div class="legend"><span>Nada satisfecho</span><span>Muy satisfecho</span></div>
+
+                <div class="seccion-titulo">Tu opinión</div>
+                <label class="question-label">¿Qué fue lo más valioso de la reunión y qué podríamos mejorar?<span class="required-star">*</span></label>
+                <textarea name="abierta" class="input-field" placeholder="Escribe aquí tus comentarios..." required></textarea>
+
+                <input type="hidden" name="email" id="emailInput">
+
+                <button type="submit" class="btn-submit" id="submitBtn">ENVIAR ENCUESTA</button>
+            </form>
+        </div>
+
+        <div id="success-msg">
+            <div class="logo-container">
+                <img src="https://drive.google.com/uc?id=1BgDDHoP3ve2r1k3-Z27LMA_YamEQkFee" alt="Apprecio Logo" class="logo-img">
+            </div>
+            <span class="success-icon">✅</span>
+            <h2 style="font-weight: 800; color: var(--dark-text); margin-top: 0;">¡Muchas gracias!</h2>
+            <p style="color: #666; line-height: 1.6;">Tu feedback ha sido enviado con éxito.</p>
+        </div>
+    </div>
+
+   <script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailFromUrl = urlParams.get('utm_email');
+        if (emailFromUrl) {
+            document.getElementById('emailInput').value = emailFromUrl;
+        }
+    };
+
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxlIqAXer58v2dUjkiuKhPXtz546XTcltDPULpjsgrllnOQDtHvbOUYjQE2A2PFa1SN/exec"; 
+
+    document.getElementById('surveyForm').onsubmit = function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerText = 'ENVIANDO...';
+
+        const formData = new FormData(this);
+        const params = new URLSearchParams(formData);
+
+        fetch(WEB_APP_URL + "?" + params.toString(), {
+            method: 'GET',
+            mode: 'no-cors'
+        }).then(() => {
+            document.getElementById('form-content').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+            window.scrollTo(0,0);
+        }).catch(err => {
+            alert("Hubo un error al enviar la encuesta.");
+            btn.disabled = false;
+            btn.innerText = 'ENVIAR ENCUESTA';
+        });
+    };
+</script>
+</body>
+</html>
