@@ -10,9 +10,9 @@
         body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; padding: 20px; align-items: center; min-height: 100vh; margin: 0; }
         .card { background: white; max-width: 550px; width: 100%; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #ddd; box-sizing: border-box; }
         
-        /* Logo Ajustado */
+        /* Logo - Tamaño Ajustado a 80px */
         .logo-container { text-align:center; margin-bottom: 25px; }
-        .logo-img { max-width: 120px; height: auto; } /* Tamaño reducido aquí */
+        .logo-img { max-width: 80px; height: auto; } 
 
         .introduccion { text-align: center; color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         
@@ -49,7 +49,7 @@
     <div class="card">
         <div id="form-content">
             <div class="logo-container">
-                <img src="https://lh3.googleusercontent.com/u/0/d/1BgDDHoP3ve2r1k3-Z27LMA_YamEQkFee" alt="Apprecio Logo" class="logo-img">
+                <img src="https://lh3.googleusercontent.com/d/1BgDDHoP3ve2r1k3-Z27LMA_YamEQkFee" alt="Apprecio Logo" class="logo-img">
             </div>
 
             <div class="introduccion">
@@ -84,7 +84,7 @@
 
         <div id="success-msg">
             <div class="logo-container">
-                <img src="https://lh3.googleusercontent.com/u/0/d/1BgDDHoP3ve2r1k3-Z27LMA_YamEQkFee" alt="Apprecio Logo" class="logo-img">
+                <img src="https://lh3.googleusercontent.com/d/1BgDDHoP3ve2r1k3-Z27LMA_YamEQkFee" alt="Apprecio Logo" class="logo-img">
             </div>
             <span class="success-icon">✅</span>
             <h2 style="font-weight: 800; color: var(--dark-text); margin-top: 0;">¡Muchas gracias!</h2>
@@ -93,6 +93,7 @@
     </div>
 
    <script>
+    // CAPTURAR EL EMAIL DE LA URL
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         const emailFromUrl = urlParams.get('utm_email');
