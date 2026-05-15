@@ -76,8 +76,7 @@
                 <label class="question-label">¿Qué fue lo más valioso de la reunión y qué podríamos mejorar?<span class="required-star">*</span></label>
                 <textarea name="abierta" class="input-field" placeholder="Escribe aquí tus comentarios..." required></textarea>
 
-                <label class="question-label">Correo electrónico corporativo:<span class="required-star">*</span></label>
-                <input type="email" name="email" class="input-field" placeholder="ejemplo@empresa.com" required>
+                <input type="hidden" name="email" id="emailInput">
 
                 <button type="submit" class="btn-submit" id="submitBtn">ENVIAR ENCUESTA</button>
             </form>
@@ -93,34 +92,45 @@
         </div>
     </div>
 
-    <script>
-        // --- PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT ---
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxlIqAXer58v2dUjkiuKhPXtz546XTcltDPULpjsgrllnOQDtHvbOUYjQE2A2PFa1SN/exec"; 
+   <script>
+    // --- 1. CAPTURAR EL EMAIL DE LA URL ---
+    // Esta función se ejecuta apenas carga la página
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const emailFromUrl = urlParams.get('utm_email');
+        
+        if (emailFromUrl) {
+            // Busca el input oculto y le pone el correo de la URL
+            document.getElementById('emailInput').value = emailFromUrl;
+            console.log("Email cargado automáticamente:", emailFromUrl);
+        }
+    };
 
-        document.getElementById('surveyForm').onsubmit = function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            
-            btn.disabled = true;
-            btn.innerText = 'ENVIANDO...';
+    // --- 2. CONFIGURACIÓN DE ENVÍO ---
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxlIqAXer58v2dUjkiuKhPXtz546XTcltDPULpjsgrllnOQDtHvbOUYjQE2A2PFa1SN/exec"; 
 
-            const formData = new FormData(this);
-            const params = new URLSearchParams(formData);
+    document.getElementById('surveyForm').onsubmit = function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        
+        btn.disabled = true;
+        btn.innerText = 'ENVIANDO...';
 
-            // Envío de datos a Google Sheets
-            fetch(WEB_APP_URL + "?" + params.toString(), {
-                method: 'GET',
-                mode: 'no-cors'
-            }).then(() => {
-                document.getElementById('form-content').style.display = 'none';
-                document.getElementById('success-msg').style.display = 'block';
-                window.scrollTo(0,0);
-            }).catch(err => {
-                alert("Hubo un error al enviar la encuesta. Por favor, intenta de nuevo.");
-                btn.disabled = false;
-                btn.innerText = 'ENVIAR ENCUESTA';
-            });
-        };
-    </script>
-</body>
-</html>
+        const formData = new FormData(this);
+        const params = new URLSearchParams(formData);
+
+        // Envío de datos a Google Sheets
+        fetch(WEB_APP_URL + "?" + params.toString(), {
+            method: 'GET',
+            mode: 'no-cors'
+        }).then(() => {
+            document.getElementById('form-content').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+            window.scrollTo(0,0);
+        }).catch(err => {
+            alert("Hubo un error al enviar la encuesta. Por favor, intenta de nuevo.");
+            btn.disabled = false;
+            btn.innerText = 'ENVIAR ENCUESTA';
+        });
+    };
+</script>
