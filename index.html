@@ -10,9 +10,9 @@
         body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; padding: 20px; align-items: center; min-height: 100vh; margin: 0; }
         .card { background: white; max-width: 550px; width: 100%; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #ddd; box-sizing: border-box; }
         
-        /* Logo */
+        /* Logo Ajustado */
         .logo-container { text-align:center; margin-bottom: 25px; }
-        .logo-img { max-width: 180px; height: auto; }
+        .logo-img { max-width: 120px; height: auto; } /* Tamaño reducido aquí */
 
         .introduccion { text-align: center; color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         
@@ -96,10 +96,8 @@
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         const emailFromUrl = urlParams.get('utm_email');
-        
         if (emailFromUrl) {
             document.getElementById('emailInput').value = emailFromUrl;
-            console.log("Email cargado automáticamente:", emailFromUrl);
         }
     };
 
@@ -108,7 +106,6 @@
     document.getElementById('surveyForm').onsubmit = function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
-        
         btn.disabled = true;
         btn.innerText = 'ENVIANDO...';
 
@@ -123,7 +120,7 @@
             document.getElementById('success-msg').style.display = 'block';
             window.scrollTo(0,0);
         }).catch(err => {
-            alert("Hubo un error al enviar la encuesta. Por favor, intenta de nuevo.");
+            alert("Hubo un error al enviar la encuesta.");
             btn.disabled = false;
             btn.innerText = 'ENVIAR ENCUESTA';
         });
