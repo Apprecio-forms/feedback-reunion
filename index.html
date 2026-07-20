@@ -55,23 +55,57 @@
             <form id="surveyForm">
                 <input type="hidden" name="email" id="emailInput">
 
-                <label class="question-label">¿Qué tan satisfecho estás con la gestión de tu ejecutivo comercial?<span class="required-star">*</span></label>
+                <!-- Pregunta 1 -->
+                <label class="question-label">1. ¿Qué tan satisfecho estás con la gestión de tu ejecutivo comercial?<span class="required-star">*</span></label>
                 <div class="scale-10">
-                    <div class="scale-item"><input type="radio" name="csat" value="1" id="c1" required><label for="c1">1</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="2" id="c2"><label for="c2">2</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="3" id="c3"><label for="c3">3</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="4" id="c4"><label for="c4">4</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="5" id="c5"><label for="c5">5</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="6" id="c6"><label for="c6">6</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="7" id="c7"><label for="c7">7</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="8" id="c8"><label for="c8">8</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="9" id="c9"><label for="c9">9</label></div>
-                    <div class="scale-item"><input type="radio" name="csat" value="10" id="c10"><label for="c10">10</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="1" id="q1_1" required><label for="q1_1">1</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="2" id="q1_2"><label for="q1_2">2</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="3" id="q1_3"><label for="q1_3">3</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="4" id="q1_4"><label for="q1_4">4</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="5" id="q1_5"><label for="q1_5">5</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="6" id="q1_6"><label for="q1_6">6</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="7" id="q1_7"><label for="q1_7">7</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="8" id="q1_8"><label for="q1_8">8</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="9" id="q1_9"><label for="q1_9">9</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_gestion" value="10" id="q1_10"><label for="q1_10">10</label></div>
                 </div>
                 <div class="legend"><span>Nada satisfecho</span><span>Muy satisfecho</span></div>
 
+                <!-- Pregunta 2 -->
+                <label class="question-label">2. ¿Qué tan oportuna consideras la respuesta del ejecutivo a tus solicitudes (cotizaciones, pedidos o soporte)?<span class="required-star">*</span></label>
+                <div class="scale-10">
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="1" id="q2_1" required><label for="q2_1">1</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="2" id="q2_2"><label for="q2_2">2</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="3" id="q2_3"><label for="q2_3">3</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="4" id="q2_4"><label for="q2_4">4</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="5" id="q2_5"><label for="q2_5">5</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="6" id="q2_6"><label for="q2_6">6</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="7" id="q2_7"><label for="q2_7">7</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="8" id="q2_8"><label for="q2_8">8</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="9" id="q2_9"><label for="q2_9">9</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_respuesta" value="10" id="q2_10"><label for="q2_10">10</label></div>
+                </div>
+                <div class="legend"><span>Nada oportuna</span><span>Muy oportuna</span></div>
+
+                <!-- Pregunta 3 -->
+                <label class="question-label">3. ¿Qué tan proactivo es el ejecutivo al sugerirte mejoras o nuevas oportunidades para tu empresa?<span class="required-star">*</span></label>
+                <div class="scale-10">
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="1" id="q3_1" required><label for="q3_1">1</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="2" id="q3_2"><label for="q3_2">2</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="3" id="q3_3"><label for="q3_3">3</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="4" id="q3_4"><label for="q3_4">4</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="5" id="q3_5"><label for="q3_5">5</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="6" id="q3_6"><label for="q3_6">6</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="7" id="q3_7"><label for="q3_7">7</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="8" id="q3_8"><label for="q3_8">8</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="9" id="q3_9"><label for="q3_9">9</label></div>
+                    <div class="scale-item"><input type="radio" name="csat_proactividad" value="10" id="q3_10"><label for="q3_10">10</label></div>
+                </div>
+                <div class="legend"><span>Nada proactivo</span><span>Muy proactivo</span></div>
+
+                <!-- Pregunta 4 -->
                 <div class="seccion-titulo">Tu opinión</div>
-                <label class="question-label">¿Qué fue lo más valioso de la reunión y qué podríamos mejorar?<span class="required-star">*</span></label>
+                <label class="question-label">4. ¿Qué fue lo más valioso de la reunión y qué podríamos mejorar?<span class="required-star">*</span></label>
                 <textarea name="abierta" class="input-field" placeholder="Escribe aquí tus comentarios..." required></textarea>
 
                 <button type="submit" class="btn-submit" id="submitBtn">ENVIAR ENCUESTA</button>
@@ -88,7 +122,7 @@
         </div>
     </div>
 
-   <script>
+    <script>
     // 1. CAPTURAR EL EMAIL DE LA URL (?utm_email=...)
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
