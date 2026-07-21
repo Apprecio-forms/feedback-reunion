@@ -10,7 +10,6 @@
         body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; padding: 20px; align-items: center; min-height: 100vh; margin: 0; }
         .card { background: white; max-width: 550px; width: 100%; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #ddd; box-sizing: border-box; }
         
-        /* Ajuste del Logo */
         .logo-container { text-align:center; margin-bottom: 25px; }
         .logo-img { width: 80px !important; height: auto; display: inline-block; }
 
@@ -123,20 +122,29 @@
     </div>
 
     <script>
-    // 1. CAPTURAR EL EMAIL DE LA URL (?utm_email=...)
+    let emailFromUrl = "";
+    let paisFromUrl = "";
+    let idEnvioFromUrl = "";
+    let ejecutivoFromUrl = "";
+
+    // Capturar parámetros de la URL de HubSpot
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
-        const emailFromUrl = urlParams.get('utm_email');
+        
+        emailFromUrl = urlParams.get('utm_email') || urlParams.get('email') || "";
+        paisFromUrl = urlParams.get('pais') || "";
+        idEnvioFromUrl = urlParams.get('id_envio') || "";
+        ejecutivoFromUrl = urlParams.get('ejecutivo') || "";
         
         if (emailFromUrl) {
             document.getElementById('emailInput').value = emailFromUrl;
-            console.log("Email capturado con éxito:", emailFromUrl);
         }
     };
 
-    // 2. CONFIGURACIÓN DE ENVÍO
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxlIqAXer58v2dUjkiuKhPXtz546XTcltDPULpjsgrllnOQDtHvbOUYjQE2A2PFa1SN/exec"; 
+    // URL de Apps Script conectada
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzG106P9LmNFwM2oBenXDhIu6YSKVk8ZYRlG0TP63qzQwRuYM6WqvnKH_AzQU9YsWc1/exec"; 
 
+    // Envío del formulario
     document.getElementById('surveyForm').onsubmit = function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
@@ -146,6 +154,11 @@
 
         const formData = new FormData(this);
         const params = new URLSearchParams(formData);
+
+        if (emailFromUrl) params.append('email', emailFromUrl);
+        if (paisFromUrl) params.append('pais', paisFromUrl);
+        if (idEnvioFromUrl) params.append('id_envio', idEnvioFromUrl);
+        if (ejecutivoFromUrl) params.append('ejecutivo', ejecutivoFromUrl);
 
         fetch(WEB_APP_URL + "?" + params.toString(), {
             method: 'GET',
@@ -160,6 +173,6 @@
             btn.innerText = 'ENVIAR ENCUESTA';
         });
     };
-</script>
+    </script>
 </body>
 </html>
